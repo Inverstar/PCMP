@@ -285,13 +285,37 @@ owners:
 
 ---
 
-## 14. 信息源
+## 14. 参考基线仓库
+
+`[规定]` 开工前必须确认一份**本地可读的 `beclab/apps` 仓库路径**（官方仓库或自己的 fork 均可），由人类提供，登记在本节。AI 不得凭记忆写 manifest 字段、目录结构或运行时配置。
+
+```text
+参考仓库本地路径：<待填写，例如 C:/Night/github.com/Inverstar/apps>
+参考仓库来源：    <官方 beclab/apps / 个人 fork>
+核对日期：        <YYYY-MM-DD>
+```
+
+`[规定]` 路径缺失时，AI 必须先向人类索取，再动手写配置；不得以"我记得官方是这样"为由跳过。
+
+`[规定]` 用法固定为「找同类应用对照」，而不是通读全仓：
+
+| 场景 | 做法 |
+| :--- | :--- |
+| 新增应用 | 找 2~3 个功能相近的应用，对照其 `OlaresManifest.yaml`、`templates/`、`i18n/` 结构 |
+| 报错修复 | 在参考仓库中检索相同报错涉及的关键字（如 `sites-enabled`、`initContainers`、`runAsUser`），看同类应用如何规避 |
+| 规范版本存疑 | 优先信参考仓库里能正常安装的应用，其次才是官方文档（见 §13） |
+
+`[规定]` 参考仓库是**只读基线**。不得直接修改参考仓库中的其他应用，也不得把其文件整目录复制进本项目而不做适配。
+
+---
+
+## 15. 信息源
 
 - 官方开发指南：<https://docs.olares.cn/zh/developer/develop/>
 - OAC 结构：`/developer/develop/package/chart.html`
 - Manifest 字段：`/developer/develop/package/manifest.html`
 - Helm 扩展与注入变量：`/developer/develop/package/extension.html`
 - 分发规则：`/developer/develop/distribute-index.html`
-- 真实应用仓库：<https://github.com/beclab/apps>
+- 真实应用仓库：<https://github.com/beclab/apps>（本地路径见 §14）
 
 `[建议]` 本文件信息超过一个 Olares 大版本未复核时视为过期，需重新核对后再引用。

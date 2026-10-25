@@ -1,6 +1,6 @@
 ---
 pcmp_version: "2.2"
-revision: 2
+revision: 3
 updated: 2026-10-25
 ---
 
@@ -20,6 +20,7 @@ updated: 2026-10-25
 - **约束与非目标**：权限按实际需要最小声明；非目标：本次不做多架构镜像构建，仅提交 `amd64`。
 - **关联文件**：`Chart.yaml`、`OlaresManifest.yaml`、`values.yaml`、`templates/deployment.yaml`、`i18n/`、`owners`、`.helmignore`
 - **验收标准**：
+  - [ ] 参考仓库路径已在 `ai/OLARES.md` §14 登记，新增字段均能对应到真实应用；
   - [ ] 四名一致：目录名 == `Chart.yaml:name` == `metadata.name` == `metadata.appid`；
   - [ ] 版本三处对齐：`name`/`version`/`appVersion` ↔ `metadata.name`/`metadata.version`/`spec.versionName`；
   - [ ] 图标为 256×256、≤ 512 KB 的公网直链，`metadata.icon` 与 `entrances[*].icon` 均已替换；
