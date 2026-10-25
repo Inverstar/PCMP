@@ -1,0 +1,14 @@
+# Service 名称与 OlaresManifest.yaml 中 entrances[].host 保持一致，
+# 系统据此把入口流量路由到本 Service。
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-notes
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: sample-notes
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: http

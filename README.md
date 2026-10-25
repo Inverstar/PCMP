@@ -28,6 +28,10 @@
 * **PCMP Lite（极简 4 件套）**：专为单人、快速原型与维护期项目设计，仅需 4 个文件（`AGENTS.md` + `ai/PROJECT.md` + `ai/STATE.md` 合并活动任务 + `ai/DECISIONS.md`），免建任何复杂规划或会话归档。开箱可用样例工程见 [examples/lite/](examples/lite/)；
 * **PCMP Full（完整套件）**：面向团队与多阶段长期工程，提供完整的任务单（`TASK.md`）、架构图谱、会话沉淀及自动化校验。
 
+此外提供领域定制模板，在 Lite 之上叠加行业平台约束：
+
+* **PCMP for Olares App**：面向 Olares 应用开发（单应用单仓库、OAC 打包分发）。在 Lite 之上增加平台事实卡与 OAC 文件骨架，把官方规范、GitBot 实际拦截规则与提交踩坑经验固化为 18 条可判定红线——覆盖图标 256×256/512KB、分类白名单、第三方镜像禁 Root、Nginx 非 root 五挂载与 80 端口遮蔽、系统注入变量禁硬编码、一分支一提交等。见 [examples/olares-app/](examples/olares-app/)。
+
 在任何新项目中使用 PCMP，只需简单三步：
 
 1. **拷贝单文档**：将 [PROJECT_CONTEXT_ZH.md](PROJECT_CONTEXT_ZH.md)（或英文版 [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md)）复制到新项目的根目录下；

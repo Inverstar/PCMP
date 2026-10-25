@@ -1,0 +1,20 @@
+# 只放应用自身可调参数。
+# 禁止在此定义 bfl / user / userspace / cluster / deps / postgres 等系统注入变量：
+# 即使写了也会被 Olares 安装时覆盖，只会误导后续维护者。
+
+image:
+  repository: your-registry/sample-notes
+  # 必须使用明确 tag，禁止 latest
+  tag: '0.1.0'
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8080
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: '1'
+    memory: 1Gi

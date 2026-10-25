@@ -1,0 +1,14 @@
+# English override: only localized fields, the rest inherits the root OlaresManifest.yaml
+metadata:
+  title: Sample Notes
+  description: A sample note-taking app for Olares.
+spec:
+  fullDescription: |
+    **Sample Notes** is a demo application showing the OAC packaging structure.
+
+    **Key Features:**
+    - Create, edit and search notes;
+    - Data stays on your local Olares instance;
+    - Same-origin access for web and mobile clients.
+  upgradeDescription: |
+    - Initial release.

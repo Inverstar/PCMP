@@ -1,0 +1,14 @@
+# 中文覆盖片段：只写需要本地化的字段，其余继承根 OlaresManifest.yaml
+metadata:
+  title: 示例笔记
+  description: 面向 Olares 的示例笔记应用。
+spec:
+  fullDescription: |
+    **示例笔记** 是用于演示 OAC 打包结构的示例应用。
+
+    **主要功能：**
+    - 笔记的创建、编辑与检索；
+    - 数据存储于 Olares 本地，不上传第三方；
+    - 支持 Web 与移动端同域访问。
+  upgradeDescription: |
+    - 首个版本。

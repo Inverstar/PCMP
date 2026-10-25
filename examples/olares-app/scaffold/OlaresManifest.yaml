@@ -1,0 +1,76 @@
+# OlaresManifest.yaml 骨架
+# 取值基线来自 beclab/apps 中可正常安装的真实应用，不是凭文档猜测。
+# 修改前请阅读 ai/OLARES.md §3（顶层结构）与 §13（规范漂移说明）。
+
+olaresManifest.version: '0.12.0'
+olaresManifest.type: app
+apiVersion: 'v3'
+
+# 各 Deployment 的副本数。官方文档未收录，真实应用已使用；不确定时整块省略。
+workloadReplicas:
+  sample-notes: 1
+
+metadata:
+  # 四名一致：目录名 == Chart.yaml:name == metadata.name == metadata.appid
+  name: sample-notes
+  appid: sample-notes
+  # 必须等于 Chart.yaml 的 version
+  version: '1.0.0'
+  title: Sample Notes
+  description: A sample note-taking app for Olares.
+  # 必须精确 256x256、<= 512 KB，用仓库 raw 直链
+  icon: https://raw.githubusercontent.com/your-org/sample-notes/main/icon-256.png
+  # 只能取白名单：agents | developer | homelab | models | workspace
+  categories:
+  - workspace
+  tags:
+  - note-taking
+
+entrances:
+  # name 与 host 建议保持一致，host 同时作为 Ingress 与 Service 名称
+- name: sample-notes
+  host: sample-notes
+  port: 8080
+  title: Sample Notes
+  icon: https://raw.githubusercontent.com/your-org/sample-notes/main/icon-256.png
+  # public / private / internal；默认 private，放宽需登记 ADR
+  authLevel: internal
+  openMethod: window
+
+permission:
+  # 只声明功能实际需要的目录，不得图省事申请整个 Home
+  appData: true
+  appCache: true
+  userData:
+  - Documents
+
+spec:
+  # 必须等于 Chart.yaml 的 appVersion
+  versionName: '0.1.0'
+  developer: Your Name
+  website: https://example.com
+  sourceCode: https://github.com/your-org/sample-notes
+  submitter: Your Name
+  locale:
+  - en-US
+  - zh-CN
+  # 资源值须实测，留空或填失真占位值会误导用户与审核
+  requiredCpu: 0.25
+  requiredMemory: 256Mi
+  requiredDisk: 128Mi
+  limitedCpu: 1
+  limitedMemory: 1Gi
+  limitedDisk: 1Gi
+  supportArch:
+  - amd64
+  - arm64
+  # 首次提交填初始说明，后续升级必填变更内容
+  upgradeDescription: |
+    Initial release.
+
+options:
+  # 声明对 Olares 系统本体的版本要求，兼容范围写在这里而不是猜规范版本号
+  dependencies:
+  - name: olares
+    type: system
+    version: '>=1.12.6-0'

@@ -6,6 +6,7 @@ package-lock.json
 # Tooling & Agent environments
 .claude/
 .agents/
+.workbuddy-ai/
 
 # PCMP derivative cache
 ai/.cache/

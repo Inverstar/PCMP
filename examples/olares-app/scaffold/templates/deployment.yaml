@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-notes
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-notes
+  template:
+    metadata:
+      labels:
+        app: sample-notes
+    spec:
+      # 数据目录需要修属主时，用 beclab 白名单镜像在启动前统一处理，
+      # 不要给业务容器提权。写法见 ai/OLARES.md §7。
+      # initContainers:
+      #   - name: fix-permissions
+      #     image: docker.io/beclab/aboveos-busybox:1.37.0
+      #     command: ["sh", "-c", "mkdir -p /data/app && chown -R 1000:1000 /data/app && chmod -R 775 /data/app"]
+      containers:
+        - name: sample-notes
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            # 端口链路三处一致：containerPort == Service targetPort/port == entrances[].port
+            - name: http
+              containerPort: {{ .Values.service.port }}
+          env:
+            # 存储路径一律取系统注入值，不要写死 /home/<user>/...
+            - name: APP_DATA_DIR
+              value: {{ .Values.userspace.appData | quote }}
+            - name: APP_CACHE_DIR
+              value: {{ .Values.userspace.appCache | quote }}
+            # 当前安装用户，用于应用内数据归属
+            - name: APP_OWNER
+              value: {{ .Values.bfl.username | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          # 第三方镜像严禁 root：固定 UID 1000。
+          # 若 Pod 内跑 Nginx 反代，还需按 ai/OLARES.md §8 挂载 5 个 emptyDir，
+          # 尤其要用空目录遮蔽 /etc/nginx/sites-enabled，否则绑定 80 端口会失败。
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
