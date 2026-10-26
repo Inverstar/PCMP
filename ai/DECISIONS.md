@@ -1,7 +1,7 @@
 ---
 pcmp_version: "2.2"
-revision: 5
-updated: 2026-10-20
+revision: 6
+updated: 2026-10-27
 ---
 
 # 架构与技术决策记录 (DECISIONS.md)
@@ -99,3 +99,33 @@ updated: 2026-10-20
 - 理由 (Reason): 将治理从“框架设计完成”推进到“深度自动化落地与开箱体验闭环”，消除荣誉制依赖与重复真源漂移风险。
 - 备选方案 (Alternatives): 保持 warning 提示与手动跑测试。放弃原因：容易遗忘，无法建立机器级别的硬质防线。
 - 影响 (Consequences): 每次 push/PR 均强制通过完整测试与合规检查；外部使用者可直接复制 examples/lite/ 立即开箱。
+
+---
+
+## DEC-007 — PCMP × Project Wiki 联动划权
+日期: 2026-10-27 | 状态: Proposed
+- 确认来源: 待人类确认。草案由人类起草，Proposed 期间不生效
+- Supersedes: 无
+- Superseded-by: 无
+- 复审触发条件 (Review Trigger): 人类确认转 Accepted 时；v2.2 解冻并评估借鉴清单时；被管理项目同时安装两者且出现真源冲突时
+- 适用范围 (Scope): 同时安装 PCMP 与 Project Wiki 的被管理项目。PCMP 本仓库当前无 `.project-wiki/`，本仓 `DECISIONS.md` 仍是决策正文，降为索引只适用于被管理项目。
+- 背景 (Context): 两个系统都写 `AGENTS.md`，都记状态与决策。同项目共存时同一事实会被写两遍，漂移后没有哪一侧负责兜底。
+- 决策 (Decision): 按领域划权，每个领域只留一个正文源，另一侧只留索引或链接。
+
+| 领域 | 唯一真源 | 另一侧的角色 |
+| :--- | :--- | :--- |
+| 状态 | PCMP `ai/STATE.md` + `ai/TASK.md` | Project Wiki `STATUS.md` 只留一行链接，不写正文 |
+| 决策 | Project Wiki `changes/decisions/ADR-*`，可挂需求与代码路径 | PCMP `DECISIONS.md` 降为索引：只保留编号、标题、确认来源（批准人）、指向 ADR 的链接 |
+| 知识 | Project Wiki 独占需求、技术文档、traceability | PCMP 不碰。会话沉淀与接管/收尾流程归 PCMP；Project Wiki `logs/` 只记知识变更审计，粒度不同可并存 |
+| `AGENTS.md` | 两侧各自所有 | Project Wiki 用带标记区块替换安装，与 PCMP 内容互不干扰 |
+
+- 借鉴清单 (Backlog，只攒不做):
+  1. 机器契约单一定义 + CI 查漂移，对应 Project Wiki 的 `schema/project-wiki.yml` 与 `check_contracts.py`；
+  2. `DECISIONS` / `sessions` 渐进披露索引；
+  3. intake 的「证据≠真理」。
+  三条不进 v2.2，等 Lite 实测数据齐、v2.2 解冻后再评估立项。
+- 理由 (Reason): 两者长处不重叠。PCMP 强在状态与接管流程的极低负担，Project Wiki 强在有 ID、有 traceability 的知识库。划权后各做擅长的事，不必合并，也不必二选一。
+- 备选方案 (Alternatives):
+  - 只留一个系统：放弃 PCMP 的轻量接管，或放弃 Project Wiki 的 traceability，两边都是净损失。
+  - 同一事实双向同步：需要持续对账，且漂移无法机器发现。
+- 影响 (Consequences): 被管理项目中 PCMP `DECISIONS.md` 由正文降为索引，`--check` 对 Accepted 决策的确认来源校验照旧适用于索引行；人类确认前本决策不产生任何强制动作。

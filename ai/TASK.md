@@ -1,34 +1,34 @@
 ---
 pcmp_version: "2.2"
-revision: 7
-updated: 2026-10-20
+revision: 8
+updated: 2026-10-27
 ---
 
 # 当前唯一活动任务 (TASK.md)
 
 ## 当前任务与核心目标 (Current Task & Objective)
-- **任务名称**：PCMP v2.2 终版收敛封板：单测守护 Lite 样板与双语校验口径诚实化。
-- **核心目标**：将 `examples/lite/` 纳入单元测试与 CI 持续守护，诚实化修正双语校验口径（版本与章节骨架对齐），正式宣告 PCMP v2.2 协议封板，转向真实业务项目实践验证。
+- **任务名称**：PCMP × Project Wiki 联动划权立项（DEC-007，Proposed）。
+- **核心目标**：把两个系统的真源边界写成可核验的划权表，落库为 Proposed 决策，等人类确认后再谈生效动作。
 
 ## 背景与范围 (Why & Scope)
-- **背景**：采纳 Alice 第三轮评审意见，消除最后两处微瑕（样板纳检防腐化、校验口径严谨诚实），并恪守工程克制原则，立即冻结功能。
-- **范围**：`tests/test_pcmp_index.py`、`scripts/pcmp_index.py`、`skills/pcmp/SKILL.md`、`README.md`。
+- **背景**：同项目同时安装 PCMP 与 Project Wiki 时，`AGENTS.md`、状态、决策三处都可能双写，漂移后没有哪一侧负责兜底。
+- **范围**：`ai/DECISIONS.md`（DEC-007 正文）、`AGENTS.md`（联动边界三条）、`ai/STATE.md`、`ai/TASK.md`、`ai/sessions/SESSION-2026-10-27-001.md`。不改协议原版，不改脚本。
 
 ## 约束与非目标 (Constraints & Non-Goals)
-- **硬约束**：PCMP 核心规范冻结在 v2.2，不再扩张新字段或新功能；遵循 STC 规范。
-- **非目标**：暂不进行 v2.3 开发。
+- **硬约束**：DEC-007 保持 Proposed。未经人类确认不得转 Accepted，也不得据此改动被管理项目；v2.2 协议功能继续冻结。
+- **非目标**：借鉴清单三条（机器契约查漂移、渐进披露索引、intake 证据≠真理）只登记不实现；不新建 `.project-wiki/` 骨架；不动 `PROJECT_CONTEXT*.md`。
 
 ## 关联关键文件 (Relevant Files)
-- `tests/test_pcmp_index.py`：样板守护单测
-- `scripts/pcmp_index.py` & `skills/pcmp/scripts/pcmp_index.py`：校验器与准确描述
-- `skills/pcmp/SKILL.md` & `README.md`：文档口径对齐
-- `examples/lite/`：受测样板工程
+- `ai/DECISIONS.md`：DEC-007 划权表正文，唯一正文源
+- `AGENTS.md`：联动边界与 `PROJECT-WIKI` 标记区块归属
+- `ai/STATE.md`：状态快照
+- `ai/sessions/SESSION-2026-10-27-001.md`：本次会话沉淀
 
 ## 验收结果 (Acceptance Result)
-- [x] 在 `tests/test_pcmp_index.py` 增加 `test_examples_lite_compliance`，让 CI 自动守护 `examples/lite/` 质量（9/9 测试全过）；
-- [x] 准确修正双语校验口径为“中英双语版本与章节骨架对齐”，并在代码注释、CLI 描述与 README/Skill 中统一；
-- [x] 运行全量单元测试与合规检查无任何错误；
-- [x] 正式宣告 PCMP v2.2 封板完成。
+- [x] DEC-007 以 Proposed 落库，划权表四行齐全，适用范围与 PCMP 自身仓库区分清楚；
+- [x] `AGENTS.md` 补联动边界三条，只做指向不复述表格；
+- [x] 单元测试 9/9 通过，`--check` 0 错误 0 警告；
+- [ ] 人类确认 DEC-007。确认后才转 Accepted，本轮不做。
 
 ## 即时动作 (Immediate Next Action)
-- 提交本地变更，向用户交付封板总结。
+- 推送 `feat/project-wiki-linkage` 分支，等人类审阅 DEC-007。
