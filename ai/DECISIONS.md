@@ -1,6 +1,6 @@
 ---
 pcmp_version: "2.2"
-revision: 6
+revision: 7
 updated: 2026-10-27
 ---
 
@@ -103,11 +103,11 @@ updated: 2026-10-27
 ---
 
 ## DEC-007 — PCMP × Project Wiki 联动划权
-日期: 2026-10-27 | 状态: Proposed
-- 确认来源: 待人类确认。草案由人类起草，Proposed 期间不生效
+日期: 2026-10-27 | 状态: Accepted
+- 确认来源: 人类在 2026-10-27 会话中确认「接受 DEC-007，限定为被管项目是对的」，见 `ai/sessions/SESSION-2026-10-27-002.md`
 - Supersedes: 无
 - Superseded-by: 无
-- 复审触发条件 (Review Trigger): 人类确认转 Accepted 时；v2.2 解冻并评估借鉴清单时；被管理项目同时安装两者且出现真源冲突时
+- 复审触发条件 (Review Trigger): v2.2 解冻并评估借鉴清单时；被管理项目同时安装两者且出现真源冲突时；Project Wiki 的 ADR 路径或 schema 发生破坏性变更、导致划权表失效时
 - 适用范围 (Scope): 同时安装 PCMP 与 Project Wiki 的被管理项目。PCMP 本仓库当前无 `.project-wiki/`，本仓 `DECISIONS.md` 仍是决策正文，降为索引只适用于被管理项目。
 - 背景 (Context): 两个系统都写 `AGENTS.md`，都记状态与决策。同项目共存时同一事实会被写两遍，漂移后没有哪一侧负责兜底。
 - 决策 (Decision): 按领域划权，每个领域只留一个正文源，另一侧只留索引或链接。
@@ -128,4 +128,4 @@ updated: 2026-10-27
 - 备选方案 (Alternatives):
   - 只留一个系统：放弃 PCMP 的轻量接管，或放弃 Project Wiki 的 traceability，两边都是净损失。
   - 同一事实双向同步：需要持续对账，且漂移无法机器发现。
-- 影响 (Consequences): 被管理项目中 PCMP `DECISIONS.md` 由正文降为索引，`--check` 对 Accepted 决策的确认来源校验照旧适用于索引行；人类确认前本决策不产生任何强制动作。
+- 影响 (Consequences): 被管理项目中 PCMP `DECISIONS.md` 由正文降为索引，`--check` 对 Accepted 决策的确认来源校验照旧适用于索引行；本仓无 `.project-wiki/`，不受降级影响。同时安装两者的存量项目在下次复审时按表迁移。

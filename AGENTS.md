@@ -23,7 +23,7 @@ PCMP (Project Context Management Protocol) 是面向人机协同的通用工程�
 ## 脚本编码规范
 - **Python 派生工具约定**：仅依赖 Python 3 原生标准库，零 pip 外部依赖；保持单文件自足；严格遵循 PEP 8 规范。
 
-## 联动边界（[提议] DEC-007，未生效）
+## 联动边界（DEC-007，已确认）
 - 与 Project Wiki 同项目共存时按领域划权：状态归本仓 `ai/STATE.md` + `ai/TASK.md`，决策正文归 `.project-wiki/changes/decisions/ADR-*`，本仓 `DECISIONS.md` 只留索引。划权表见 `ai/DECISIONS.md` DEC-007，不在别处复述。
 - `AGENTS.md` 内 `PROJECT-WIKI` 标记区块由 project-wiki skill 安装与替换，不得手改；标记外内容归本仓。
 - 借鉴清单（机器契约查漂移、渐进披露索引、intake 证据≠真理）只攒不做，v2.2 解冻后再评估。
